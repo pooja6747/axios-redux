@@ -10,9 +10,13 @@ import {
   PostApiDetails,
   UpdateApiDetails,
 } from "../api/axiosRequest";
+import { useDispatch } from "react-redux";
+import { useAppDispatch } from "./store";
+
+const dispatch = useDispatch;
 
 const GetApiAction = () => {
-  return function (dispatch) {
+  return function () {
     return GetApiDetails().then((response) => {
       dispatch({
         type: "GET_DETAILS",
@@ -22,8 +26,8 @@ const GetApiAction = () => {
   };
 };
 
-const PostApiAction = (request) => {
-  return function (dispatch) {
+const PostApiAction = (request: { id?: string; email?: string; username?: string; }) => {
+  return function (dispatch: (arg0: { type: string; payload: string; }) => void) {
     return PostApiDetails(request).then((response) => {
       console.log(response);
 
@@ -35,8 +39,8 @@ const PostApiAction = (request) => {
   };
 };
 
-const UpdateApiAction = (request, id) => {
-  return function (dispatch) {
+const UpdateApiAction = (request: { email?: string; username?: string; }, id: any) => {
+  return function (dispatch: (arg0: { type: string; payload: boolean; }) => void) {
     dispatch({
       type: UPDATE_DETAILS,
       payload: false,
@@ -52,8 +56,8 @@ const UpdateApiAction = (request, id) => {
   };
 };
 
-const DeleteApiAction = (id) => {
-  return function (dispatch) {
+const DeleteApiAction = (id: string) => {
+  return function (dispatch: (arg0: { type: string; payload: boolean; }) => void) {
     dispatch({
       type: DELETE_DETAILS,
       payload: false,

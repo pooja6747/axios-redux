@@ -2,16 +2,18 @@ import { PostApiAction } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/reducer/rootReducer";
+import { useAppDispatch } from "../redux/store";
 
 const Forms = () => {
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
 
-  const dispatch = useDispatch();
-  const isResponse = useSelector((state) => state.reducer.isResponse);
+  const dispatch = useAppDispatch();
+  const isResponse = useSelector((state:RootState) => state.reducer.isResponse);
 
-  const formHandle = (e) => {
+  const formHandle = async(e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const finalData = {
       id: id,
@@ -19,48 +21,48 @@ const Forms = () => {
       username: username,
     };
 
-    dispatch(PostApiAction(finalData));
+  dispatch(PostApiAction(finalData));
   };
 
-  //    if(isResponse == true){
-  //     alert("Your response has been submitted");
-  //    }
+     if(isResponse == true){
+      alert("Your response has been submitted");
+     }
 
   return (
     <div className="container">
       <h1>Create Data Form</h1>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">
+      <div className="mb-3">
+        <label  className="form-label">
           ID
         </label>
         <input
           placeholder="Id"
           type="number"
-          class="form-control"
+          className="form-control"
           value={id}
           onChange={(e) => setId(e.target.value)}
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">
+      <div className="mb-3">
+        <label  className="form-label">
           Email address
         </label>
         <input
           type="email"
           placeholder="email"
-          class="form-control"
+          className="form-control"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">
+      <div className="mb-3">
+        <label  className="form-label">
           Username
         </label>
         <input
           type="text"
           placeholder="userName"
-          class="form-control"
+          className="form-control"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />

@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect } from "react";
 import { GetApiAction, DeleteApiAction } from "../redux/action";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/reducer/rootReducer";
+import { useAppDispatch } from "../redux/store";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const responseData = useSelector((state) => state.reducer.details);
+  const dispatch = useAppDispatch();
+  const responseData = useSelector((state:RootState) => state.reducer.details);
   const isDeleteResponse = useSelector(
-    (state) => state.reducer.isDeleteResponse
+    (state:RootState) => state.reducer.isDeleteResponse
   );
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const Home = () => {
           </thead>
           <tbody>
           {responseData
-            ? responseData.map((person, index) => {
+            ? responseData.map((person: { id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | null | undefined; email: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; username: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }, index: Key | null | undefined) => {
                 return (
                   <tr key={index}>
                     <td>{person.id}</td>

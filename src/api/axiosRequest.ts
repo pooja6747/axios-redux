@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function AxiosRequest(url, method, headers, params) {
+export async function AxiosRequest(url:string, method:string, headers: { "Content-type": string; }, params: {}) {
   return params
     ? axios({
         url: url,
@@ -23,14 +23,14 @@ const GetApiDetails = () => {
   return AxiosRequest("https://fakestoreapi.com/users", "GET", headers, {});
 };
 
-const PostApiDetails = (data) => {
+const PostApiDetails = (data: {}) => {
   const headers = {
     "Content-type": "application/json",
   };
   return AxiosRequest("https://fakestoreapi.com/users", "POST", headers, data);
 };
 
-const GetDetailsById = (id) => {
+const GetDetailsById = (id: string) => {
   const headers = {
     "Content-type": "application/json",
   };
@@ -42,7 +42,7 @@ const GetDetailsById = (id) => {
   );
 };
 
-const UpdateApiDetails = (data, id) => {
+const UpdateApiDetails = (data: {}, id: string) => {
   const headers = {
     "Content-type": "application/json",
   };
@@ -54,7 +54,7 @@ const UpdateApiDetails = (data, id) => {
   );
 };
 
-const DeleteApiDetails = (id) => {
+const DeleteApiDetails = (id: string) => {
   const headers = {
     "Content-type": "application/json",
   };

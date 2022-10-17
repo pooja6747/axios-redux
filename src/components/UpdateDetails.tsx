@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GetDetailByHook from "../hooks/getDetailByHook";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../redux/store";
 
 const UpdateDetails = () => {
   const { id } = useParams();
@@ -11,14 +12,14 @@ const UpdateDetails = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // const isUpdateResponse = useSelector(
   //   (state) => state.reducer.isUpdateResponse
   // );
 
   const [detailsById] = GetDetailByHook(id);
 
-  const formHandle = (e) => {
+  const formHandle = (e:any) => {
     e.preventDefault();
     const finalData = {
       email: email,

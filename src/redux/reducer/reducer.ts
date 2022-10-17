@@ -1,3 +1,4 @@
+import { type } from "os";
 import {
   DELETE_DETAILS,
   GET_DETAILS,
@@ -5,7 +6,15 @@ import {
   UPDATE_DETAILS,
 } from "../type";
 
-const initialState = {
+type InitialState = {
+  details: [],
+  detailsById: [],
+  isResponse: boolean,
+  isUpdateResponse: boolean,
+  isDeleteResponse: boolean,
+}
+
+const initialState:InitialState = {
   details: [],
   detailsById: [],
   isResponse: false,
@@ -13,7 +22,7 @@ const initialState = {
   isDeleteResponse: false,
 };
 
-const Reducer = (state = initialState, action) => {
+const Reducer = (state ={}= initialState, action: any) => {
   switch (action.type) {
     case GET_DETAILS:
       return {

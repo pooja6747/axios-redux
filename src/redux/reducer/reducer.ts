@@ -12,6 +12,7 @@ type InitialState = {
   isResponse: boolean,
   isUpdateResponse: boolean,
   isDeleteResponse: boolean,
+  newChanges : boolean
 }
 
 const initialState:InitialState = {
@@ -20,6 +21,7 @@ const initialState:InitialState = {
   isResponse: false,
   isUpdateResponse: false,
   isDeleteResponse: false,
+  newChanges : false
 };
 
 const Reducer = (state ={}= initialState, action: any) => {
